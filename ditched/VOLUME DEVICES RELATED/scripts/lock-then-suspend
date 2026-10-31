@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Single source of truth for "lock then suspend" — used by rofi's Suspend
+# button and Hyprland's lid-switch binding, so both go through the exact
+# same sequence instead of duplicating the race fix in two places.
+
+qs ipc call lock lock || exit 1
+
+# qs ipc call returns as soon as the message is dispatched, not once the
+# screen is actually locked (grim still has to screenshot every monitor
+# first) — without this you get a flash of desktop on resume before the
+# LockScreen appears. Bump if you still see it.
+sleep 1
+
+systemctl suspend

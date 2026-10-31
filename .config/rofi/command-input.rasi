@@ -1,0 +1,52 @@
+@import "~/.cache/rofi/colors.rasi"
+@import "~/.cache/rofi/font-13.rasi"
+
+configuration {
+    click-to-exit: true;
+    modi:          "drun";
+    show-icons:    false;
+}
+
+* {
+}
+
+window {
+    width:            320px;
+    height:           52px;
+    border:           0px solid;
+    border-radius:    10px;
+    background-color: @popup-bg;
+    location:         center;
+    anchor:           center;
+}
+mainbox {
+    background-color: transparent;
+    children:         [ inputbar ];
+    spacing:          0px;
+    padding:          0px;
+    expand:           true;
+    vertical-align:   0.5;
+}
+
+inputbar {
+    background-color: transparent;
+    children:         [ entry ];
+    padding:          0px 14px;
+    spacing:          0px;
+    expand:           true;
+    vertical-align:   0.5;
+    horizontal-align: 0.5;
+}
+
+entry {
+    background-color:  transparent;
+    text-color:         @foreground;
+    placeholder:        "Add command by typing here...";
+    placeholder-color:  @text-muted;
+    vertical-align:     0.5;
+    horizontal-align:   0.0;
+    expand:             true;
+}
+
+prompt, case-indicator { enabled: false; }
+listview               { enabled: false; }

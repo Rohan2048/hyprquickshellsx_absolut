@@ -1,0 +1,19 @@
+module Services
+singleton Volume 1.0 Volume.qml
+singleton Battery 1.0 Battery.qml
+singleton Wifi 1.0 Wifi.qml
+singleton Bluetooth 1.0 Bluetooth.qml
+singleton Notifications 1.0 Notifications.qml
+singleton CalendarService 1.0 CalendarService.qml
+singleton Shortcuts 1.0 Shortcuts.qml
+singleton Animations 1.0 Animations.qml
+singleton Commands 1.0 Commands.qml
+singleton WorkspaceOverviewService 1.0 WorkspaceOverviewService.qml
+singleton MusicPlayerService 1.0 MusicPlayerService.qml
+singleton WallpaperState 1.0 WallpaperState.qml
+singleton TransitionSync 1.0 TransitionSync.qml
+ClickAwayCloser 1.0 ClickAwayCloser.qml
+
+singleton Brightness 1.0 Brightness.qml
+singleton ScreenshotSession 1.0 ScreenshotSession.qml
+singleton ScreenshotQueue 1.0 ScreenshotQueue.qml

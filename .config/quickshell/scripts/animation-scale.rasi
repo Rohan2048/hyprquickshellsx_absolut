@@ -1,0 +1,88 @@
+@import "~/.cache/rofi/colors.rasi"
+@import "~/.cache/wal/colors-rofi.rasi"
+
+configuration {
+    click-to-exit: true;
+    modi:       "dmenu";
+    font:       "Satoshi Variable 11";
+    show-icons: false;
+}
+
+window {
+    width:            280px;
+    border-radius:    12px;
+    background-color: @popup-bg;
+    location:         center;
+    anchor:           center;
+}
+
+mainbox {
+    background-color: transparent;
+    children:         [ message, listview ];
+    spacing:          4px;
+    padding:          6px;
+}
+
+message {
+    background-color: transparent;
+    border:           0px;
+    padding:          10px 12px 6px 12px;
+}
+
+textbox {
+    background-color: transparent;
+    text-color:       @text-muted;
+    font:             "Satoshi Variable 11";
+    vertical-align:   0.5;
+    horizontal-align: 0.5;
+}
+
+listview {
+    background-color: transparent;
+    border:           0px;
+    padding:          0px;
+    spacing:          4px;
+    columns:          1;
+    lines:            6;
+    fixed-height:     false;
+}
+
+scrollbar {
+    background-color: transparent;
+    handle-color:     @border-muted;
+}
+
+element {
+    background-color: transparent;
+    padding:          8px 12px;
+    border-radius:    8px;
+    orientation:      horizontal;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color: transparent;
+}
+
+element selected.normal,
+element selected.active,
+element selected.urgent {
+    background-color: @selected-bg;
+}
+
+element-icon {
+    size: 0px;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       @foreground;
+    horizontal-align: 0.5;
+    vertical-align:   0.5;
+}
+
+element selected.normal element-text,
+element selected.active element-text,
+element selected.urgent element-text {
+    text-color: @text-on-accent;
+}

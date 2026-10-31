@@ -1,0 +1,13 @@
+# shortcuts data (personal)
+.config/eww/shortcuts.json
+
+# gtk bookmarks (personal paths)
+.config/gtk-3.0/bookmarks
+
+# quickshell: not relevant / personal
+.config/quickshell/icons/
+.config/quickshell/state/
+.config/quickshell/README.md
+
+# pywal cache (generated at runtime)
+.cache/

@@ -1,0 +1,2 @@
+export QT_STYLE_OVERRIDE=kde
+export QT_QPA_PLATFORMTHEME=kde

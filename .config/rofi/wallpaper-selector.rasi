@@ -1,0 +1,92 @@
+@import "~/.cache/rofi/colors.rasi"
+@import "~/.cache/rofi/font-8.rasi"
+@import "~/.cache/wal/colors-rofi.rasi"
+
+* {
+    background-color: transparent;
+    text-color: @foreground;
+}
+
+window {
+    width: 670px;
+    height: 410px;
+    padding: 0px;
+    border: 1px;
+    border-color: @border-muted;
+    border-radius: 12px;
+    background-color: @popup-bg;
+}
+
+mainbox {
+    padding: 8px;
+    children: [ inputbar, message, listview ];
+    background-color: transparent;
+}
+
+inputbar {
+    enabled: false;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background-color: @element-bg;
+    border: 1px;
+    border-color: @border-muted;
+}
+
+message {
+    padding: 6px 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background-color: @element-bg;
+    text-color: @text-muted;
+}
+
+textbox {
+    background-color: transparent;
+    text-color: @text-muted;
+    font: "monospace 9";
+    horizontal-align: 0.5;
+}
+
+listview {
+    columns: 3;
+    lines: 3;
+    scrollbar: false;
+    fixed-height: true;
+    background-color: transparent;
+}
+
+element {
+    orientation: vertical;
+    padding: 4px;
+    border-radius: 8px;
+    background-color: transparent;
+}
+
+element selected.normal,
+element selected.active,
+element selected.urgent {
+    background-color: @selected-bg;
+    border: 1px;
+    border-color: @border-muted;
+}
+
+element-icon {
+    size: 120px;
+    horizontal-align: 0.5;
+    background-color: transparent;
+}
+
+element-text {
+    enabled: false;
+    horizontal-align: 0.5;
+    padding: 4px 0px;
+    background-color: transparent;
+    text-color: @foreground;
+}
+
+element selected.normal element-text,
+element selected.active element-text,
+element selected.urgent element-text {
+    text-color: @text-on-accent;
+}

@@ -1,0 +1,8 @@
+#Make sure you have this in sudo visudo for the features to work
+#
+#%wheel ALL=(ALL) NOPASSWD: /usr/bin/systemctl suspend, /usr/bin/systemctl poweroff, /usr/bin/systemctl reboot, /usr/bin/tuned-adm profile *, /usr/bin/tee, /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor, /usr/bin/sysctl -w vm.dirty_writeback_centisecs=*, /usr/bin/sed -i s* /etc/sysctl.conf , /sys/devices/system/cpu/intel_pstate/no_turbo, /usr/bin/systemctl suspend, /usr/bin/systemctl poweroff, /usr/bin/systemctl reboot, /usr/bin/at, /usr/bin/atrm, /usr/bin/sed -i s* /etc/systemd/logind.conf, /usr/bin/systemctl reload systemd-logind, /usr/bin/cat /usr/lib/systemd/system-sleep/lock-on-suspend.sh, /usr/bin/chmod +x /usr/lib/systemd/system-sleep/lock-on-suspend.sh
+
+
+
+
+

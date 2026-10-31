@@ -1,0 +1,23 @@
+@import 'colors.css';
+
+window.background {
+    border-radius: 0;
+}
+
+decoration {
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    background: none;
+}
+
+decoration:backdrop {
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    background: none;
+}

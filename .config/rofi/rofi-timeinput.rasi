@@ -1,0 +1,45 @@
+@import "~/.cache/rofi/colors.rasi"
+@import "~/.cache/rofi/font-13.rasi"
+
+configuration {
+    click-to-exit: true;
+    show-icons: false;
+    columns: 1;
+}
+
+* {
+    background-color: transparent;
+    text-color: @foreground;
+    font-family: "Satoshi Variable 11";
+}
+
+window {
+    width:            300px;
+    height:           100px;
+    border:           0px;
+    border-radius:    12px;
+    background-color: @popup-bg;
+}
+
+mainbox {
+    background-color: transparent;
+    children:         [ inputbar ];
+    padding:          6px;
+}
+
+inputbar {
+    background-color: transparent;
+    children:         [ entry ];
+    padding:          8px;
+}
+
+entry {
+    background-color:  transparent;
+    text-color:        @foreground;
+    placeholder:       "Perform action at (HH:MM):";
+    placeholder-color: @text-dim;
+}
+
+listview {
+    enabled: false;
+}

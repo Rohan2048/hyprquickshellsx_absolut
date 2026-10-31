@@ -1,0 +1,21 @@
+
+[calendars]
+
+[[google]]
+path = ~/.local/share/calendar/rohanhulli@gmail.com/
+type = calendar
+
+[[holidays]]
+path = ~/.local/share/calendar/cln2sqbechkm2rh3d1nmoqb4c5sk0pridtqn0bjm5phm2r35dpi62shectnmuprccknr66rrd@virtual/
+type = calendar
+
+[locale]
+timeformat = %H:%M
+dateformat = %d/%m/%Y
+longdateformat = %d/%m/%Y
+datetimeformat = %d/%m/%Y %H:%M
+longdatetimeformat = %d/%m/%Y %H:%M
+
+[default]
+default_calendar = google
+

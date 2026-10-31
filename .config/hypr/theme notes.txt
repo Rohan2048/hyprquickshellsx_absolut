@@ -1,0 +1,3 @@
+Built on KDE Themes for kde apps to adapt to light and dark theme.May need plasma-integration for this.
+
+

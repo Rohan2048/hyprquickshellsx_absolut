@@ -1,0 +1,10 @@
+@import url("/home/rohan/.config/gtk-3.0/colors.css");
+
+@define-color theme_button_decoration_focus_breeze {color1};
+@define-color theme_button_decoration_hover_breeze {color1};
+@define-color theme_button_decoration_focus_backdrop_breeze {color1};
+@define-color theme_button_decoration_hover_backdrop_breeze {color1};
+@define-color theme_hovering_selected_bg_color_breeze {color1};
+@define-color theme_selected_bg_color_breeze {color1};
+@define-color theme_view_active_decoration_color_breeze {color1};
+@define-color theme_view_hover_decoration_color_breeze {color1};
