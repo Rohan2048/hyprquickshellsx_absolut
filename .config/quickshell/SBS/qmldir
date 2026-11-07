@@ -1,0 +1,18 @@
+module SBS
+singleton SBSState 1.0 SBSState.qml
+singleton SBSQuickApps 1.0 SBSQuickApps.qml
+SBSShell 1.0 SBSShell.qml
+SBSSettingsPanel 1.0 SBSSettingsPanel.qml
+SBSWifi 1.0 SBSWifi.qml
+SBSBluetooth 1.0 SBSBluetooth.qml
+SBSOSD 1.0 SBSOSD.qml
+SBSLockScreen 1.0 SBSLockScreen.qml
+SBSLockBackground 1.0 SBSLockBackground.qml
+SBSLockClock 1.0 SBSLockClock.qml
+SBSLockSettingsButton 1.0 SBSLockSettingsButton.qml
+SBSLockSettingsPanel 1.0 SBSLockSettingsPanel.qml
+SBSLockBatteryStatus 1.0 SBSLockBatteryStatus.qml
+SBSText 1.0 SBSText.qml
+SBSBtn 1.0 SBSBtn.qml
+SBSPanel 1.0 SBSPanel.qml
+SBSScrollList 1.0 SBSScrollList.qml

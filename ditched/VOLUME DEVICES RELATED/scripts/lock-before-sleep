@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Runs before/after EVERY suspend/hibernate, any trigger — lid, power
+# button, systemctl suspend, idle timeout. All of it goes through logind.
+# Runs as root, so we hop into your user session to reach Quickshell's IPC.
+#remember to make it executable and linked with the system:
+#chmod +x ~/.config/quickshell/scripts/lock-before-sleep
+#sudo ln -sf ~/.config/quickshell/scripts/lock-before-sleep /usr/lib/systemd/system-sleep/lock-before-sleep
+#verify with : ls -l /usr/lib/systemd/system-sleep/lock-before-sleep
+#confirm its executable: ls -l ~/.config/quickshell/scripts/lock-before-sleep
+
+case "$1" in
+    pre)
+        for uid_dir in /run/user/*/; do
+            uid=$(basename "$uid_dir")
+            wayland_sock=$(ls "$uid_dir" 2>/dev/null | grep -m1 -E '^wayland-[0-9]+$')
+            [ -z "$wayland_sock" ] && continue
+
+            user_name=$(id -nu "$uid" 2>/dev/null) || continue
+
+            runuser -u "$user_name" -- env \
+                XDG_RUNTIME_DIR="$uid_dir" \
+                WAYLAND_DISPLAY="$wayland_sock" \
+                DBUS_SESSION_BUS_ADDRESS="unix:path=${uid_dir}bus" \
+                qs ipc call lock lock
+        done
+
+        sleep 1
+        ;;
+    post)
+        :
+        ;;
+esac

@@ -1,0 +1,99 @@
+cd /tmp
+curl -L https://www.lua.org/ftp/lua-5.5.0.tar.gz -o lua-5.5.0.tar.gz
+tar xzf lua-5.5.0.tar.gz
+cd lua-5.5.0
+make linux
+sudo make install
+
+
+sudo tee /usr/local/lib/pkgconfig/lua5.5.pc << 'EOF'
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Lua
+Description: Lua 5.5
+Version: 5.5.0
+Libs: -L${libdir} -llua
+Cflags: -I${includedir}
+EOF
+
+sudo mkdir -p /usr/local/lib/pkgconfig
+sudo tee /usr/local/lib/pkgconfig/lua5.5.pc << 'EOF'
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Lua
+Description: Lua 5.5
+Version: 5.5.0
+Libs: -L${libdir} -llua
+Cflags: -I${includedir}
+EOF
+
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
+pkg-config --modversion lua5.5
+
+
+#pass it too:
+
+PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH hyprpm update
+
+echo 'export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH' >> ~/.bashrc
+
+
+----
+
+PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH hyprpm update -f
+hyprpm enable hyprexpo
+hyprpm list
+
+
+Run this:
+
+```bash
+git config --global credential.helper store
+```
+
+Then do the clone, enter your GitHub username + password **once**. It saves to `~/.git-credentials` in plaintext and never asks again.
+
+**But wait** — GitHub removed password auth in 2021. You need a **Personal Access Token** instead of your password:
+
+1. Go to https://github.com/settings/tokens
+2. Generate new token (classic) → check `repo` scope → generate
+3. Copy the token
+4. Use it as the password when git prompts
+
+That's it, one time, then hyprpm will work forever.
+
+
+
+
+
+
+
+
+============
+git clone https://github.com/sandwichfarm/hyprexpo /tmp/hyprexpo3
+ls /tmp/hyprexpo3
+
+
+
+sudo ln -s /usr/local/lib/liblua.a /usr/local/lib/liblua5.5.a
+sudo ldconfig
+cd ~
+hyprpm update --force 2>&1 | tail -50
+
+
+-----
+
+Themes are compiled into the library. But we can create a custom theme JSON and drop it in `~/.local/share/org.kde.syntax-highlighting/themes/`. Get the format from the KDE source on GitHub:
+
+```bash
+curl -s "https://raw.githubusercontent.com/KDE/syntax-highlighting/master/data/themes/breeze-dark.theme" | head -60
+
+curl -s "https://raw.githubusercontent.com/KDE/syntax-highlighting/master/data/themes/breeze-dark.theme"
+```
+

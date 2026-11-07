@@ -1,0 +1,4 @@
+## Gotchas
+- Qt5Compat's blur/shadow module is `Qt5Compat.GraphicalEffects` (not `GraphicsEffects`,
+  despite that being the more "correct"-sounding name — it kept its Qt5-era name).
+- Verify what's actually installed with: ls /usr/lib64/qt6/qml/Qt5Compat/
