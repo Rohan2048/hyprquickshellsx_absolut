@@ -1,0 +1,83 @@
+@import "~/.cache/wal/colors-rofi.rasi"
+@import "~/.cache/rofi/colors.rasi"
+@import "~/.cache/rofi/font-11.rasi"
+
+configuration {
+    click-to-exit: true;
+    modi:       "dmenu";
+    show-icons: false;
+}
+
+window {
+    width:            280px;
+    border-radius:    12px;
+    background-color: @popup-bg;
+    location:         center;
+    anchor:           center;
+}
+
+mainbox {
+    background-color: transparent;
+    children:         [ inputbar, listview ];
+    spacing:          0px;
+    padding:          6px;
+}
+
+inputbar {
+    background-color: transparent;
+    children:         [ prompt ];
+    padding:          10px 12px 6px 12px;
+    horizontal-align: 0.5;
+}
+
+prompt {
+    enabled:          true;
+    background-color: transparent;
+    text-color:       rgba(255, 255, 255, 0.5);
+    vertical-align:   0.5;
+    horizontal-align: 0.5;
+    expand:           false;
+}
+
+case-indicator, entry {
+    enabled: false;
+}
+
+listview {
+    background-color: transparent;
+    border:           0px;
+    padding:          0px;
+    spacing:          4px;
+    columns:          1;
+    lines:            2;
+    fixed-height:     false;
+}
+
+scrollbar {
+    background-color: transparent;
+    handle-color:     rgba(255, 255, 255, 0.2);
+}
+
+element {
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
+    padding:          8px 12px;
+    border-radius:    8px;
+    orientation:      horizontal;
+}
+
+element selected {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+
+element-icon {
+    size: 0px;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       inherit;
+    horizontal-align: 0.5;
+    vertical-align:   0.5;
+}

@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+# portable-refresh.sh -- run at login, before the shell starts (hypr/shellwrapper.sh does this).
+#
+# Copying this config to another machine / user leaves things behind that only made sense on the old one:
+#   * the compiled QML cache (.qmlcache) and the app / icon scan cache
+#   * saved icon paths such as /home/rohan/.config/quickshell/icons/x.png  (Shortcuts, Quick apps, ...)
+# which show up as empty icons. This script notices that the machine or home folder changed and
+#   1. clears those caches (they rebuild themselves),
+#   2. points the saved ~/.config/quickshell paths in state/*.json at the current home,
+#   3. points every other saved path in state/ (Theme presets and their images, Shortcuts, font / music
+#      folders, ... e.g. /home/rohan/Downloads/WALLPAPERS/x.jpg) at the current home as well.
+# It also repairs the saved paths whenever one is found pointing at another home, so a half-copied
+# config is fixed too. Safe to run any time:  bash portable-refresh.sh
+#
+# A cache that is simply deleted by hand needs nothing: every cache here is rebuilt on demand
+# (the QML cache by Quickshell, the app scan by the next "add shortcut", wallpaper cache by its watcher).
+
+QS="$HOME/.config/quickshell"
+STATE="$QS/state"
+STAMP="$STATE/.machine"
+[ -d "$QS" ] || exit 0
+mkdir -p "$STATE" "$QS/.qmlcache"
+
+ID="$(cat /etc/machine-id 2>/dev/null || hostname 2>/dev/null)|$HOME"
+OLD="$(cat "$STAMP" 2>/dev/null)"
+
+if [ "$OLD" != "$ID" ]; then
+    # new machine, new home, or first run of this script: start the caches clean
+    rm -rf "$QS/.qmlcache"/* "$QS/.qmlcache"/.[!.]* 2>/dev/null
+    rm -f "$QS/icons/.last_scan" "$QS/icons/.app_cache.tsv" "$STATE/wallpaper-precache.hash"
+    rm -rf "$HOME/.cache/quickshell/cursor-previews" 2>/dev/null
+fi
+
+# saved icon / asset paths that point into another user's ~/.config/quickshell
+python3 - "$STATE" "$HOME" <<'PY'
+import glob, os, re, sys
+state, home = sys.argv[1], sys.argv[2]
+pat = re.compile(r'/home/([^/"\\\s]+)/\.config/quickshell/')
+new = home + "/.config/quickshell/"
+for f in glob.glob(os.path.join(state, "*.json")):
+    try:
+        s = open(f, encoding="utf-8").read()
+    except Exception:
+        continue
+    t = pat.sub(lambda m: new if m.group(0) != new else m.group(0), s)
+    if t != s:
+        try:
+            tmp = f + ".tmp"
+            open(tmp, "w", encoding="utf-8").write(t)
+            os.replace(tmp, f)
+        except Exception:
+            pass
+PY
+
+# Everything else saved in state/ (Theme presets and their wallpapers, Shortcuts, Quick apps, font and music
+# folders, ...): QML stores absolute paths, so any /home/<other user>/rest is turned into $HOME/rest.
+# A path that still exists is left alone. If the files have not been copied over yet the path still ends up
+# under the current home, so it works as soon as they are put in the same place.
+python3 - "$STATE" "$HOME" <<'PY'
+import glob, os, re, sys
+state, home = sys.argv[1], sys.argv[2]
+pat = re.compile(r'/home/([A-Za-z0-9._-]+)/([^"\\\s]*)')
+def fix(m):
+    if m.group(1) == os.path.basename(home):
+        return m.group(0)
+    try:
+        if os.path.exists(m.group(0)):
+            return m.group(0)
+    except Exception:
+        pass
+    return home + "/" + m.group(2)
+for f in glob.glob(os.path.join(state, "*")):
+    if not os.path.isfile(f) or os.path.basename(f) == ".machine":
+        continue
+    try:
+        s = open(f, encoding="utf-8").read()
+    except Exception:
+        continue                      # binary or unreadable: leave it alone
+    t = pat.sub(fix, s)
+    if t != s:
+        try:
+            tmp = f + ".tmp"
+            open(tmp, "w", encoding="utf-8").write(t)
+            os.replace(tmp, f)
+        except Exception:
+            pass
+PY
+
+printf '%s' "$ID" > "$STAMP"
+exit 0

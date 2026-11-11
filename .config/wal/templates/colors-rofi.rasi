@@ -1,0 +1,26 @@
+* {
+    background-color:            {background};
+    border-color:                {background};
+    text-color:                  {foreground};
+
+    normal-background:           transparent;
+    normal-foreground:           {foreground};
+    alternate-normal-background: rgba(0,0,0,0.1);
+    alternate-normal-foreground: {foreground};
+    selected-normal-background:  {color1};
+    selected-normal-foreground:  {background};
+
+    active-background:           {color2};
+    active-foreground:           {foreground};
+    selected-active-background:  {color3};
+    selected-active-foreground:  {background};
+}
+
+prompt, entry, case-indicator {
+    background-color: transparent;
+    text-color:       {foreground};
+}
+
+window {
+    border: 0px solid;
+}

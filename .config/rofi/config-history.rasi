@@ -1,0 +1,86 @@
+@import "~/.cache/wal/colors-rofi.rasi"
+@import "~/.cache/rofi/colors.rasi"
+@import "~/.cache/rofi/font-11.rasi"
+
+configuration {
+    click-to-exit: true;
+    modi: "dmenu";
+}
+
+window {
+    width:            35%;
+    height:           50%;
+    border-radius:    12px;
+    background-color: @popup-bg;
+}
+
+mainbox {
+    background-color: transparent;
+    children:         [ inputbar, listview ];
+    spacing:          0px;
+}
+
+inputbar {
+    background-color: transparent;
+    children:         [ entry ];
+    padding:          12px 16px;
+    border:           0px;
+}
+
+entry {
+    background-color:  transparent;
+    text-color:        @foreground;
+    font-family:       "Satoshi Variable";
+    placeholder:       "Search clipboard...";
+    placeholder-color: @text-dim;
+}
+
+prompt, case-indicator {
+    enabled: false;
+}
+
+listview {
+    background-color: transparent;
+    border:           0px;
+    padding:          8px 12px;
+    spacing:          4px;
+    columns:          1;
+    lines:            8;
+    fixed-height:     true;
+}
+
+scrollbar {
+    background-color: transparent;
+    handle-color:     @border-muted;
+}
+
+element {
+    background-color: transparent;
+    padding:          8px 12px;
+    border-radius:    8px;
+    orientation:      horizontal;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color: transparent;
+}
+
+element selected.normal,
+element selected.active,
+element selected.urgent {
+    background-color: @selected-bg;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       @foreground;
+    horizontal-align: 0;
+    vertical-align:   0.5;
+}
+
+element selected.normal element-text,
+element selected.active element-text,
+element selected.urgent element-text {
+    text-color: @text-on-accent;
+}

@@ -1,0 +1,69 @@
+@import "~/.cache/wal/colors-rofi.rasi"
+@import "~/.cache/rofi/colors.rasi"
+@import "~/.cache/rofi/font-12.rasi"
+
+configuration {
+    click-to-exit: true;
+    show-icons: false;
+}
+
+* {
+    window-bg-color:     @popup-bg;
+    unselected-bg-color: transparent;
+    font-family:         "Satoshi Variable 14";
+}
+
+window {
+    width:            300px;
+    height:           250px;
+    border:           0px;
+    border-radius:    12px;
+    background-color: @popup-bg;
+}
+
+mainbox {
+    background-color: transparent;
+    children:         [ listview ];
+}
+
+listview {
+    background-color: transparent;
+    border:           0px;
+    padding:          6px;
+    spacing:          4px;
+}
+
+scrollbar {
+    background-color: transparent;
+    handle-color:     @border-muted;
+}
+
+element {
+    background-color: transparent;
+    padding:          10px 14px;
+    border-radius:    8px;
+    horizontal-align: 0.5;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color: transparent;
+}
+
+element selected.normal,
+element selected.active,
+element selected.urgent {
+    background-color: @selected-bg;
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       @foreground;
+    horizontal-align: 0.5;
+}
+
+element selected.normal element-text,
+element selected.active element-text,
+element selected.urgent element-text {
+    text-color: @text-on-accent;
+}
